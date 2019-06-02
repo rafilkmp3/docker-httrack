@@ -6,4 +6,5 @@ RUN apt-get update \
 VOLUME [ "/tmp/site" ]
 COPY httrack.sh /httrack.sh
 RUN chmod 777 /httrack.sh
+ENTRYPOINT [ "bash", "-c" ]
 CMD [ "/httrack.sh" ]
