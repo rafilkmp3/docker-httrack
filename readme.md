@@ -1,7 +1,7 @@
 ##### Run httrack once standalone
 
 ```
-docker run -it --rm -e MIRROR_SITE="https://example.com" - v ./sitecloned:/tmp/site rafilkmp3/docker-httrack:latest 
+docker run -it --rm -e MIRROR_SITE="https://example.com" -v ./sitecloned:/tmp/site rafilkmp3/docker-httrack:latest 
 ```
 ##### Run httrack and serve webpage using nginx
 
