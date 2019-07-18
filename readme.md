@@ -19,7 +19,7 @@ services:
   httrack:
     image: rafilkmp3/docker-httrack:latest
     environment:
-      MIRROR_SITE : https://www.b9.com.br/
+      MIRROR_SITE : https://example.com
     volumes:
       - static-content:/tmp/site/
 
