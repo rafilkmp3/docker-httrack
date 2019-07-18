@@ -1,6 +1,6 @@
 FROM ubuntu
 RUN apt-get update \
-    && apt-get install -y vim httrack\
+    && apt-get install -y vim httrack curl \
     && rm -rf /var/lib/apt/lists/* 
 
 VOLUME [ "/tmp/site" ]
