@@ -4,9 +4,11 @@
 HTTPS_URL=$(curl --head --silent --write-out "%{redirect_url}\n" --output /dev/null $MIRROR_SITE)
 # if you set a https site url on env the workarround above will return a empty value and will broke our magic
 FINAL_URL=${HTTPS_URL:-$MIRROR_SITE}
-echo $FINAL_URL
+echo Mirror site: $FINAL_URL
+echo Mirror depth: $MIRROR_DEPTH
+echo Mirror external link depth :$EXTERNAL_LINKS_DEPTH
 
 # Here the magic happens
-httrack --update $FINAL_URL -O /tmp/httrack -r1 -%e0 -N100 --preserve -%F ''
+httrack --update $FINAL_URL -O /tmp/httrack -r$MIRROR_DEPTH -%e$EXTERNAL_LINKS_DEPTH -N100 --preserve -%F ''
 mv /tmp/httrack/index-2.html /tmp/site/index.html
 tail -f /tmp/site/index.html

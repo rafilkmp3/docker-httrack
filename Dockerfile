@@ -1,4 +1,6 @@
 FROM ubuntu
+ENV MIRROR_DEPTH 1
+ENV EXTERNAL_LINKS_DEPTH 0 
 RUN apt-get update \
     && apt-get install -y vim httrack curl \
     && rm -rf /var/lib/apt/lists/* 
