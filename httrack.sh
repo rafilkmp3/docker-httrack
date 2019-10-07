@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# we need a htaccess tunned to support httrack mirrored site 
+cp /tmp/.htaccess /tmp/site/.htaccess
+
 # Most of sites have ssl and httrack dont follow the location so whe have this workarround.
 HTTPS_URL=$(curl --head --silent --write-out "%{redirect_url}\n" --output /dev/null $MIRROR_SITE)
 # if you set a https site url on env the workarround above will return a empty value and will broke our magic

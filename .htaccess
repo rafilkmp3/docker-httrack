@@ -1,0 +1,23 @@
+Options -Indexes
+
+DirectoryIndex index.html index-2.html index-3.html index-4.html index-5.html index-6.html index-7.html index-8.html index-9.html
+
+RewriteEngine On
+RewriteBase /
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+# make sure index is index
+# also account for HTTrack index-n.html renaming
+RewriteRule ^index(-[0-9])?\.html$ / [R=301,L]
+RewriteRule ^(.*)/index(-[0-9])?\.html$ /$1 [R=301,L]
+
+# Hide extension
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html
+
+# Redirect .html to non-.html
+RewriteCond %{THE_REQUEST} \.html
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
