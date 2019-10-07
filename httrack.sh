@@ -17,5 +17,5 @@ else
     mv /tmp/httrack/index-2.html /tmp/site/index.html
 fi
 
-chmod -R 777 /tmp/site/
+chmod -R 777 /tmp/site/*
 tail -f /tmp/site/index*.html
