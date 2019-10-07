@@ -9,6 +9,13 @@ echo Mirror depth: $MIRROR_DEPTH
 echo Mirror external link depth :$EXTERNAL_LINKS_DEPTH
 
 # Here the magic happens
-httrack --update $FINAL_URL -O /tmp/httrack -r$MIRROR_DEPTH -%e$EXTERNAL_LINKS_DEPTH -N100 --preserve -%F ''
-mv /tmp/httrack/index-2.html /tmp/site/index.html
-tail -f /tmp/site/index.html
+if [[ $FULL_CLONE == true ]]; then
+    echo "php artisan schedule:run "
+    httrack --update  $FINAL_URL -O /tmp/site -N100 -I0 -N "%p/%n%[month].%t" --max-rate 0 --disable-security-limits --near  -v -c64
+else
+    httrack --update $FINAL_URL -O /tmp/httrack -r$MIRROR_DEPTH -%e$EXTERNAL_LINKS_DEPTH -N100 --preserve -%F ''
+    mv /tmp/httrack/index-2.html /tmp/site/index.html
+fi
+
+chmod -R 777 /tmp/site/
+tail -f /tmp/site/index*.html
