@@ -11,11 +11,13 @@ version: '3'
 
 services:
   nginx:
-    image: nginx:alpine
+    image: jtreminio/php-apache:7.2
     ports:
-      - 80:80
+      - 8080:80
     volumes:
-      - static-content:/usr/share/nginx/html
+      - static-content:/var/www/
+    environment:
+      VHOST : "wordpress"
   httrack:
     image: rafilkmp3/docker-httrack:latest
     environment:
